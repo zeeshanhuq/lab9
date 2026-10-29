@@ -28,7 +28,11 @@ int main(int argc, char* argv[])
         printf("Operating system version: %s\n", sysinfo.version);
         printf("System's hardware type: %s\n", sysinfo.machine);
     }
-
+    
+    int processors;
+    if((processors = get_nprocs()) != 0){
+        printf("Number of CPUs in system: %d\n", processors);
+    }
 
 
     return 0;
