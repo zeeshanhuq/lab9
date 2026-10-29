@@ -1,6 +1,8 @@
 /*
 * Name: pmod.c
 * Author: Zeeshan Huq
+* Assignment Name: Lab 9 System Calls
+* Section Number: 111
 * Date: 10/29/26
 */
 

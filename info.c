@@ -1,6 +1,8 @@
 /*
 * Name: info.c
 * Author: Zeeshan Huq
+* Assignment Name: Lab 9 System Calls
+* Section Number: 111
 * Date: 10/29/26
 */
 
@@ -28,7 +30,7 @@ int main(int argc, char* argv[])
         printf("Operating system version: %s\n", sysinfo.version);
         printf("System's hardware type: %s\n", sysinfo.machine);
     }
-    
+
     int processors;
     if((processors = get_nprocs()) != 0){
         printf("Number of CPUs in system: %d\n", processors);
