@@ -23,4 +23,4 @@ Sleeps for a 3 so user can see current priority, then uses nice to reduce its pr
 finfo.c:  
 
 Uses mode_t to find file attributes. A switch case with mode and an S_IFMT bit mask is used to find the file type. Mode is also used to know the file permissions. Checks the arguments entered and prints the file information if a proper file is entered. Otherwise, prints an error.
-How to use: call ./finfo <filename>
+How to use: call ./finfo (filename)
