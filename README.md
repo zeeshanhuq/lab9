@@ -19,3 +19,8 @@ Uses getpriority and sched_getscheduler and print the policy as text. Defaults t
 pmod.c:  
 
 Sleeps for a 3 so user can see current priority, then uses nice to reduce its priority by 10. Then it sleeps with nanosleep for 1,837,272,638 nanoseconds. Finally gives a goodbye message and exits.  
+
+finfo.c:  
+
+Uses mode_t to find file attributes. A switch case with mode and an S_IFMT bit mask is used to find the file type. Mode is also used to know the file permissions. Checks the arguments entered and prints the file information if a proper file is entered. Otherwise, prints an error.
+How to use: call ./finfo <filename>

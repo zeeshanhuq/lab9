@@ -15,21 +15,21 @@
 
 int main(void)
 {
-    sleep(3);
+    sleep(3); // Sleep for 3 seconds so user can check process priority before and after the change
     errno = 0;
-    int result = nice(10);
+    int result = nice(10); // Reduce process priority by 10 and check for errors
     if (result == -1 && errno != 0)
     {
         perror("Error calling nice");
         return EXIT_FAILURE;
     }
 
-    printf("New nice value: %d\n", result);
+    printf("New nice value: %d\n", result); 
 
-    struct timespec req = { .tv_sec = 1, .tv_nsec = 837272638L };
+    struct timespec req = { .tv_sec = 1, .tv_nsec = 837272638L }; // Sleep for 1.837272638 seconds to allow user to check process priority after the change
     struct timespec rem;
     
-    while (nanosleep(&req, &rem) == -1)
+    while (nanosleep(&req, &rem) == -1) // Check for errors during sleep
     {
         if (errno != EINTR)
         {

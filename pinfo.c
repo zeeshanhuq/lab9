@@ -16,7 +16,7 @@
 #include <sched.h>
 #include <errno.h>
 
-static const char *policy_to_string(int policy)
+static const char *policy_to_string(int policy) // Convert scheduling policy to string representation
 {
     switch (policy) {
         case SCHED_OTHER:
@@ -45,12 +45,12 @@ static const char *policy_to_string(int policy)
 int main(int argc, char* argv[])
 {
     pid_t pid;
-    if (argc > 2) {
+    if (argc > 2) { // Check if the correct number of arguments is provided
         fprintf(stderr, "Usage: %s [pid]\n", argv[0]);
         return EXIT_FAILURE;
     }
 
-    if (argc == 2) {
+    if (argc == 2) { // If a PID is provided, convert it to a pid_t type and validate it
         char *endptr = NULL;
         errno = 0;
         long val = strtol(argv[1], &endptr, 10);
@@ -64,22 +64,23 @@ int main(int argc, char* argv[])
     }
 
     errno = 0;
-    int priority = getpriority(PRIO_PROCESS, pid);
+    int priority = getpriority(PRIO_PROCESS, pid); // Get the priority of the process and check for errors
     if (priority == -1 && errno != 0) {
         fprintf(stderr, "Error getting priority for PID %d: %s\n", pid, strerror(errno));
         return EXIT_FAILURE;
     }
 
-    int policy = sched_getscheduler(pid);
+    int policy = sched_getscheduler(pid); // Get the scheduling policy of the process and check for errors
     if (policy == -1) {
         fprintf(stderr, "Error getting scheduling policy for PID %d: %s\n", pid, strerror(errno));
         return EXIT_FAILURE;
     }
 
-    #ifndef SCHED_RESET_ON_FORK
+    #ifndef SCHED_RESET_ON_FORK // If SCHED_RESET_ON_FORK is not defined, clear the flag from the policy
         policy &= policy & ~SCHED_RESET_ON_FORK;
     #endif
 
+    // Print process information
     printf("PID: %d\n", pid);
     printf("Priority: %d\n", priority);
     printf("Scheduling Policy: %s\n", policy_to_string(policy));
